@@ -3,17 +3,27 @@ import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
 
-function A(props) {
-  return <p>Hola {props.nombre}!!!</p>;
-}
+class Contador extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      contador: 0
+    };
+  }
 
-function B(props) {
-  return <p>Puntaje de {props.nombre}: 10</p>;
-}
+  add = () => { 
+    this.setState({
+      contador: this.state.contador + 1
+    });
+  }
 
-class MiComponente extends Component {
   render() {
-    return <p>Hola Mundooooo!!!!</p>;
+    return (
+      <div>
+        <p>{this.state.contador}</p>
+        <button onClick={this.add}>Aumentar</button>
+      </div>
+    );
   }
 }
 
@@ -30,13 +40,7 @@ class App extends Component {
 
     return (
       <div>
-        <Hello name={this.state.name} />
-        <p>
-          Start editing to see some magic happen :)
-        </p>
-        <MiComponente />
-        <A nombre={nombre}/>
-        <B nombre={nombre}/>
+        <Contador/>
       </div>
     );
   }
